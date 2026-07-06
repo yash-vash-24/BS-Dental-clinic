@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BS Dental Clinic Sirsa | Dr. Harmandeep Sydora & Dr. Lakhwant Singh</title>
+<meta name="description" content="BS Dental Clinic, Parshuram Chowk, Sirsa. Rated 5.0 by patients. Root canals, implants, braces, teeth cleaning & emergency dental care. Book on WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN TOKENS — change once, updates everywhere
+   ============================================ */
+:root{
+  --ink:#10303F;
+  --ink-soft:#3D5A68;
+  --mint:#17A387;
+  --mint-dark:#0E8069;
+  --amber:#F5B841;
+  --paper:#FFFFFF;
+  --mist:#EFF6F5;
+  --line:#DCE8E6;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(16,48,63,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{font-family:'Fraunces',serif;line-height:1.15}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+section{padding:76px 0}
+.eyebrow{display:inline-block;font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--mint);margin-bottom:12px}
+.section-title{font-size:clamp(1.7rem,3.5vw,2.4rem);font-weight:600;margin-bottom:14px}
+.section-sub{color:var(--ink-soft);max-width:560px;margin-bottom:40px}
+
+/* ============================================
+   ANIMATIONS
+   .reveal = hidden at first; JavaScript adds .in
+   when the element scrolls into view, and it
+   smoothly fades + slides up into place.
+   ============================================ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+/* delay classes = children appear one after another (stagger) */
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+/* hero entrance: plays automatically on page load */
+@keyframes riseIn{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes blobMove{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(30px,-20px) scale(1.08)}66%{transform:translate(-20px,15px) scale(.95)}}
+@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}70%{box-shadow:0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes starTwinkle{0%,100%{opacity:1}50%{opacity:.45}}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:box-shadow .3s ease}
+header.scrolled{box-shadow:0 6px 20px rgba(16,48,63,.08)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem}
+.logo span{color:var(--mint)}
+.nav-links{display:flex;gap:26px;font-weight:600;font-size:.92rem}
+.nav-links a{position:relative;padding-bottom:4px}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--mint);transition:width .25s ease}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:var(--mint)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;border-radius:999px;padding:12px 22px;font-size:.95rem;transition:transform .18s ease, background .18s ease, box-shadow .18s ease;cursor:pointer;border:none}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:scale(.97)}
+.btn-mint{background:var(--mint);color:#fff}
+.btn-mint:hover{background:var(--mint-dark);box-shadow:0 8px 20px rgba(23,163,135,.35)}
+.btn-ghost{border:2px solid var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.btn-call{background:var(--ink);color:#fff}
+.btn-call:hover{background:#1c4457}
+
+/* ---------- Hero with soft moving background blobs ---------- */
+.hero{background:linear-gradient(180deg,var(--mist) 0%, #ffffff 100%);padding:88px 0 66px;position:relative;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:blobMove 14s ease-in-out infinite;pointer-events:none}
+.blob-1{width:340px;height:340px;background:#BFE9DF;top:-80px;right:8%}
+.blob-2{width:260px;height:260px;background:#FBE7B5;bottom:-60px;left:4%;animation-delay:-7s}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;position:relative}
+.hero h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:600;margin-bottom:18px}
+.hero h1 em{font-style:italic;color:var(--mint);background:linear-gradient(90deg,var(--mint),#3fd0b0,var(--mint));background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 4s linear infinite}
+.hero p{color:var(--ink-soft);font-size:1.08rem;max-width:480px;margin-bottom:28px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.hero-note{font-size:.85rem;color:var(--ink-soft)}
+/* entrance animation, one element after another */
+.hero .eyebrow{animation:riseIn .7s ease both}
+.hero h1{animation:riseIn .7s .12s ease both}
+.hero p{animation:riseIn .7s .24s ease both}
+.hero-actions{animation:riseIn .7s .36s ease both}
+.hero-note{animation:riseIn .7s .48s ease both}
+.rating-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:34px 30px;text-align:center;max-width:340px;margin-left:auto;position:relative;animation:popIn .8s .3s cubic-bezier(.2,.9,.3,1.2) both, floatY 6s 1.2s ease-in-out infinite}
+.rating-big{font-family:'Fraunces',serif;font-size:5rem;font-weight:700;line-height:1}
+.stars{color:var(--amber);font-size:1.5rem;letter-spacing:4px;margin:8px 0}
+.stars i{font-style:normal;display:inline-block;animation:starTwinkle 2.4s ease-in-out infinite}
+.stars i:nth-child(2){animation-delay:.2s}.stars i:nth-child(3){animation-delay:.4s}
+.stars i:nth-child(4){animation-delay:.6s}.stars i:nth-child(5){animation-delay:.8s}
+.rating-card p{color:var(--ink-soft);font-size:.95rem}
+.rating-chip{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--amber);color:var(--ink);font-weight:800;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:999px;white-space:nowrap}
+.review-float{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;font-size:.88rem;color:var(--ink-soft);box-shadow:var(--shadow);max-width:340px;margin-left:auto;animation:riseIn .7s .6s ease both}
+.review-float b{color:var(--ink)}
+
+/* ---------- Trust strip with counting numbers ---------- */
+.trust{background:var(--ink);color:#fff;padding:26px 0}
+.trust-grid{display:flex;justify-content:space-around;gap:20px;flex-wrap:wrap;text-align:center}
+.trust-item b{display:block;font-family:'Fraunces',serif;font-size:1.6rem}
+.trust-item span{font-size:.82rem;opacity:.85}
+
+/* ---------- Services ---------- */
+.services{background:#fff}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc-card{border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:box-shadow .25s ease, transform .25s ease, border-color .25s ease;position:relative;overflow:hidden}
+.svc-card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:linear-gradient(90deg,var(--mint),#3fd0b0);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-card:hover{box-shadow:var(--shadow);transform:translateY(-6px);border-color:var(--mint)}
+.svc-icon{width:46px;height:46px;border-radius:12px;background:var(--mist);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;transition:transform .3s ease}
+.svc-card:hover .svc-icon{transform:scale(1.15) rotate(-6deg)}
+.svc-card h3{font-size:1.1rem;margin-bottom:8px}
+.svc-card p{font-size:.9rem;color:var(--ink-soft)}
+.svc-more{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.chip{background:var(--mist);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.82rem;font-weight:600;color:var(--ink-soft);transition:background .2s ease,color .2s ease,transform .2s ease}
+.chip:hover{background:var(--mint);color:#fff;transform:translateY(-2px)}
+
+/* ---------- Doctors ---------- */
+.doctors{background:var(--mist)}
+.doc-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.doc-card{background:#fff;border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);display:flex;gap:20px;align-items:flex-start;transition:transform .25s ease, box-shadow .25s ease}
+.doc-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(16,48,63,.16)}
+.doc-avatar{flex:0 0 72px;height:72px;border-radius:50%;background:var(--ink);color:#fff;font-family:'Fraunces',serif;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:transform .3s ease, background .3s ease}
+.doc-card:hover .doc-avatar{background:var(--mint);transform:scale(1.08)}
+.doc-card h3{font-size:1.15rem;margin-bottom:4px}
+.doc-card .role{color:var(--mint);font-weight:700;font-size:.85rem;margin-bottom:10px}
+.doc-card p{font-size:.9rem;color:var(--ink-soft)}
+
+/* ---------- Testimonials: auto-scrolling marquee ----------
+   .marquee = the window (hides whatever slides outside it)
+   .marquee-track = the long row of cards sliding left forever
+   The track holds TWO copies of the cards; the animation moves
+   it exactly -50% (one full copy), then restarts — the human
+   eye can't spot the restart, so it looks endless. */
+@keyframes marqueeSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee{overflow:hidden;padding:10px 0 6px;
+  /* soft fade on both edges so cards melt in/out */
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marquee-track{display:flex;gap:20px;width:max-content;animation:marqueeSlide 40s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused} /* pause to read */
+.testi-card{border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff;transition:transform .25s ease, box-shadow .25s ease;flex:0 0 320px;display:flex;flex-direction:column}
+.testi-card:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:var(--shadow)}
+.testi-card .stars{font-size:1rem;letter-spacing:2px;margin:0 0 12px}
+.testi-card p{font-size:.92rem;color:var(--ink-soft);margin-bottom:14px;flex:1}
+.testi-card b{font-size:.85rem}
+.testi-more{background:var(--mist);border-color:var(--mint);cursor:pointer}
+.testi-more:hover{background:var(--mint)}
+.testi-more:hover p, .testi-more:hover b, .testi-more:hover .stars{color:#fff}
+.testi-cta{margin-top:30px;text-align:center}
+@media (prefers-reduced-motion:reduce){
+  .marquee-track{animation:none;flex-wrap:wrap;width:auto} /* show as normal grid if animations are off */
+}
+
+/* ---------- Timings + emergency ---------- */
+.timings{background:var(--mist)}
+.time-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:stretch}
+.time-card,.emg-card{background:#fff;border-radius:var(--radius);padding:30px;box-shadow:var(--shadow)}
+.time-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-size:.95rem}
+.time-row:last-child{border-bottom:none}
+.time-row b{font-weight:700}
+.emg-card{background:linear-gradient(135deg,var(--ink) 0%,#1a4a60 100%);color:#fff;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.emg-card h3{font-size:1.4rem}
+.emg-card p{opacity:.85;font-size:.95rem}
+
+/* ---------- Visit / map ---------- */
+.map-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
+.addr-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:16px}
+.addr-card p{color:var(--ink-soft);font-size:.95rem}
+.map-frame{border:0;border-radius:var(--radius);width:100%;min-height:340px;box-shadow:var(--shadow)}
+
+/* ---------- FAQ ---------- */
+details{border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;margin-bottom:12px;background:#fff;transition:border-color .2s ease, box-shadow .2s ease}
+details[open]{border-color:var(--mint);box-shadow:var(--shadow)}
+summary{font-weight:700;cursor:pointer;font-size:.98rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"+";font-size:1.4rem;color:var(--mint);transition:transform .25s ease}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:10px;color:var(--ink-soft);font-size:.92rem}
+
+/* ---------- Book section ---------- */
+.book{background:linear-gradient(135deg,var(--ink) 0%,#14574a 100%);color:#fff;text-align:center;position:relative;overflow:hidden}
+.book::before{content:"";position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.05);top:-200px;left:-100px;animation:floatY 9s ease-in-out infinite}
+.book .section-title{color:#fff}
+.book p{opacity:.85;max-width:520px;margin:0 auto 30px}
+.book .btn-mint{animation:pulseRing 2.2s infinite}
+
+/* ---------- Footer ---------- */
+footer{padding:28px 0;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-soft)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+/* ---------- Floating WhatsApp button ---------- */
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:60;background:#25D366;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25);transition:transform .15s ease;animation:pulseRing 2.4s infinite}
+.wa-float:hover{transform:scale(1.12)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+
+/* ---------- Mobile ---------- */
+@media (max-width:860px){
+  .nav-links{display:none}
+  .hero-grid,.doc-grid,.time-grid,.map-grid{grid-template-columns:1fr}
+  .svc-grid,.testi-grid{grid-template-columns:1fr 1fr}
+  .rating-card,.review-float{margin:0 auto}
+  .review-float{margin-top:18px}
+  section{padding:56px 0}
+}
+@media (max-width:560px){
+  .svc-grid,.testi-grid{grid-template-columns:1fr}
+  .hero{padding:56px 0 44px}
+  .nav-cta .btn-ghost{display:none}
+}
+/* If a visitor's phone is set to "reduce motion",
+   we switch off all animations out of respect —
+   this is an accessibility best practice */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a class="logo" href="#top">BS <span>Dental</span> Clinic</a>
+    <nav class="nav-links" aria-label="Main menu">
+      <a href="#services">Services</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#visit">Visit Us</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="tel:+919896936360">📞 Call</a>
+      <a class="btn btn-mint" href="https://wa.me/919896936360?text=Hello%20BS%20Dental%20Clinic%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">Book Appointment</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Parshuram Chowk · Sirsa</span>
+      <h1>Gentle, honest dental care your <em>whole family</em> can trust.</h1>
+      <p>From painless root canals to braces and implants — Dr. Harmandeep Sydora and Dr. Lakhwant Singh explain every step, so you always know what's happening and why.</p>
+      <div class="hero-actions">
+        <a class="btn btn-mint" href="https://wa.me/919896936360?text=Hello%20BS%20Dental%20Clinic%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">Book on WhatsApp</a>
+        <a class="btn btn-ghost" href="tel:+919896936360">Call 098969 36360</a>
+      </div>
+      <p class="hero-note">Open Mon–Sat 9:30 AM – 7:30 PM · Sun 9:30 AM – 3:00 PM</p>
+    </div>
+    <div>
+      <div class="rating-card">
+        <span class="rating-chip">Rated by our patients</span>
+        <div class="rating-big" id="ratingNumber">5.0</div>
+        <div class="stars" aria-label="5 out of 5 stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div>
+        <p><b><span class="count" data-target="47">0</span> Google reviews</b> — every single one five stars.</p>
+      </div>
+      <div class="review-float">
+        "They made sure to explain every step of the process to me." — <b>a braces patient, Google review</b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<div class="trust">
+  <div class="wrap trust-grid">
+    <div class="trust-item"><b>5.0 ★</b><span>Google rating</span></div>
+    <div class="trust-item"><b><span class="count" data-target="2">0</span> Doctors</b><span>One caring team</span></div>
+    <div class="trust-item"><b><span class="count" data-target="17">0</span>+</b><span>Treatments offered</span></div>
+    <div class="trust-item"><b><span class="count" data-target="7">0</span> Days</b><span>Open every week</span></div>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="wrap">
+    <span class="eyebrow reveal">What we treat</span>
+    <h2 class="section-title reveal">Complete dental care, under one roof</h2>
+    <p class="section-sub reveal">Whatever brings you in — pain, prevention, or a better smile — we have a treatment for it.</p>
+    <div class="svc-grid">
+      <div class="svc-card reveal d1"><div class="svc-icon">🦷</div><h3>Root Canal Treatment</h3><p>Save a damaged tooth instead of removing it — done gently, with clear explanation at every step.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-icon">😁</div><h3>Braces & Smile Correction</h3><p>Straighten teeth at any age with a plan made for your smile, your timeline, and your budget.</p></div>
+      <div class="svc-card reveal d3"><div class="svc-icon">🔩</div><h3>Dental Implants</h3><p>A permanent, natural-looking replacement for missing teeth so you can eat and smile freely.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-icon">✨</div><h3>Cleaning & Whitening</h3><p>Remove stains and tartar for a fresher mouth and a visibly brighter smile.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-icon">👑</div><h3>Veneers, Crowns & Bridges</h3><p>Repair broken or worn teeth and restore full strength and appearance.</p></div>
+      <div class="svc-card reveal d3"><div class="svc-icon">🧒</div><h3>Kids' Dentistry</h3><p>Patient, friendly care that makes children comfortable at the dentist from their very first visit.</p></div>
+    </div>
+    <div class="svc-more reveal">
+      <span class="chip">Emergency care</span>
+      <span class="chip">Extractions</span>
+      <span class="chip">Fillings & sealants</span>
+      <span class="chip">Dentures</span>
+      <span class="chip">Oral surgery</span>
+      <span class="chip">Mouth guards</span>
+      <span class="chip">Teeth reshaping</span>
+      <span class="chip">Bonding</span>
+      <span class="chip">Digital X-ray</span>
+      <span class="chip">Regular check-ups</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DOCTORS ================= -->
+<section class="doctors" id="doctors">
+  <div class="wrap">
+    <span class="eyebrow reveal">Meet your doctors</span>
+    <h2 class="section-title reveal">Two doctors. One promise: you'll always understand your treatment.</h2>
+    <p class="section-sub reveal">Patients repeatedly mention the same thing in reviews — both doctors take time to explain, never rush, and treat every family member with care.</p>
+    <div class="doc-grid">
+      <div class="doc-card reveal d1">
+        <div class="doc-avatar">HS</div>
+        <div>
+          <h3>Dr. Harmandeep Sydora</h3>
+          <div class="role">Dental Surgeon</div>
+          <p>Known for painless root canal treatments and a calm, attentive chair-side manner that puts nervous patients at ease.</p>
+        </div>
+      </div>
+      <div class="doc-card reveal d2">
+        <div class="doc-avatar">LS</div>
+        <div>
+          <h3>Dr. Lakhwant Singh</h3>
+          <div class="role">Dental Surgeon</div>
+          <p>Leads braces and restorative treatments, guiding patients through every stage of the process with patience and skill.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REVIEWS (auto-scrolling carousel) =================
+     How it works: we place the review cards in a long row, then a CSS
+     animation slides the whole row left forever. We include the cards
+     TWICE back-to-back, so when the first set slides out, the second
+     set is already there — creating a seamless endless loop.
+     Hovering pauses the scroll so people can read. -->
+<section id="reviews">
+  <div class="wrap">
+    <span class="eyebrow reveal">Patient stories</span>
+    <h2 class="section-title reveal">Why families across Sirsa choose us</h2>
+    <p class="section-sub reveal">Real experiences shared by patients on Google — hover to pause and read.</p>
+  </div>
+  <div class="marquee reveal">
+    <div class="marquee-track">
+      <!-- SET 1 of the review cards -->
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>My whole family gets all tooth-related treatment here — RCT, crowns, regular upkeep. Dr. Harmandeep is polite and attentive; a great experience every time.</p>
+        <b>— Family patient · Google</b>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>Great experience with my braces treatment. Dr. Lakhwant Singh and Dr. Harmandeep are friendly, knowledgeable, and explained every step of the process.</p>
+        <b>— Braces patient · Google</b>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>Exceptional clinic! Highly skilled, friendly staff and state-of-the-art equipment. From routine check-ups to complex procedures — thorough and efficient.</p>
+        <b>— Regular patient · Google</b>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>An excellent clinic and a wonderful experience. Dr. Harmandeep is a very knowledgeable and skilled dentist. Highly recommend BS Dental Clinic.</p>
+        <b>— Verified patient · Google</b>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>The best clinic, where you get great treatment from an expert team headed by Dr. Lakhwant Singh. Five stars, fully deserved.</p>
+        <b>— Verified patient · Google</b>
+      </div>
+      <a class="testi-card testi-more" href="https://maps.google.com/?q=Bs+dental+clinic+Sirsa" target="_blank" rel="noopener">
+        <div class="stars">★★★★★</div>
+        <p><b>+42 more five-star reviews</b><br>Read them all on our Google page →</p>
+        <b>Google Reviews</b>
+      </a>
+      <!-- SET 2: exact copy of the cards above, for the seamless loop -->
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>My whole family gets all tooth-related treatment here — RCT, crowns, regular upkeep. Dr. Harmandeep is polite and attentive; a great experience every time.</p>
+        <b>— Family patient · Google</b>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>Great experience with my braces treatment. Dr. Lakhwant Singh and Dr. Harmandeep are friendly, knowledgeable, and explained every step of the process.</p>
+        <b>— Braces patient · Google</b>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>Exceptional clinic! Highly skilled, friendly staff and state-of-the-art equipment. From routine check-ups to complex procedures — thorough and efficient.</p>
+        <b>— Regular patient · Google</b>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>An excellent clinic and a wonderful experience. Dr. Harmandeep is a very knowledgeable and skilled dentist. Highly recommend BS Dental Clinic.</p>
+        <b>— Verified patient · Google</b>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>The best clinic, where you get great treatment from an expert team headed by Dr. Lakhwant Singh. Five stars, fully deserved.</p>
+        <b>— Verified patient · Google</b>
+      </div>
+      <a class="testi-card testi-more" href="https://maps.google.com/?q=Bs+dental+clinic+Sirsa" target="_blank" rel="noopener">
+        <div class="stars">★★★★★</div>
+        <p><b>+42 more five-star reviews</b><br>Read them all on our Google page →</p>
+        <b>Google Reviews</b>
+      </a>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="testi-cta reveal">
+      <a class="btn btn-ghost" href="https://maps.google.com/?q=Bs+dental+clinic+Sirsa" target="_blank" rel="noopener">Read all 47 reviews on Google →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TIMINGS + EMERGENCY ================= -->
+<section class="timings">
+  <div class="wrap">
+    <span class="eyebrow reveal">Plan your visit</span>
+    <h2 class="section-title reveal">Clinic timings</h2>
+    <div class="time-grid">
+      <div class="time-card reveal d1">
+        <div class="time-row"><span>Monday – Saturday</span><b>9:30 AM – 7:30 PM</b></div>
+        <div class="time-row"><span>Sunday</span><b>9:30 AM – 3:00 PM</b></div>
+        <div class="time-row"><span>Walk-ins</span><b>Welcome</b></div>
+        <div class="time-row"><span>Appointments</span><b>WhatsApp or call</b></div>
+      </div>
+      <div class="emg-card reveal d2">
+        <h3>Tooth pain can't wait?</h3>
+        <p>We offer emergency dental care. Call us right away and we'll guide you on what to do next.</p>
+        <a class="btn btn-mint" href="tel:+919896936360" style="align-self:flex-start">📞 Emergency: 098969 36360</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISIT / MAP ================= -->
+<section id="visit">
+  <div class="wrap">
+    <span class="eyebrow reveal">Find us</span>
+    <h2 class="section-title reveal">Easy to reach, right at Parshuram Chowk</h2>
+    <div class="map-grid">
+      <div class="addr-card reveal d1">
+        <h3>BS Dental Clinic</h3>
+        <p>Corner of Gita Bhawan Street,<br>Parshuram Chowk, B Block,<br>Subhash Chowk, Sirsa,<br>Haryana 125055</p>
+        <a class="btn btn-call" href="https://maps.google.com/?q=Bs+dental+clinic+Sirsa" target="_blank" rel="noopener" style="align-self:flex-start">Get directions</a>
+        <p style="font-size:.85rem">Landmark: Parshuram Chowk — ask anyone nearby, they'll point you to us.</p>
+      </div>
+      <iframe class="map-frame reveal d2" title="Map to BS Dental Clinic Sirsa" loading="lazy"
+        src="https://www.google.com/maps?q=29.5320424,75.0314546&z=17&output=embed"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow reveal">Common questions</span>
+    <h2 class="section-title reveal">Frequently asked questions</h2>
+    <details class="reveal d1">
+      <summary>Do I need an appointment, or can I walk in?</summary>
+      <p>Walk-ins are welcome, but booking on WhatsApp or by phone means little to no waiting when you arrive.</p>
+    </details>
+    <details class="reveal d2">
+      <summary>Is root canal treatment painful?</summary>
+      <p>Modern root canals are done under local anaesthesia and are far more comfortable than most people expect. Our patients regularly describe the experience as painless.</p>
+    </details>
+    <details class="reveal d3">
+      <summary>Do you treat children?</summary>
+      <p>Yes — paediatric (children's) dentistry is one of our services, and we take extra care to make kids feel comfortable.</p>
+    </details>
+    <details class="reveal d4">
+      <summary>What should I do in a dental emergency?</summary>
+      <p>Call us immediately at 098969 36360. We'll tell you what to do right away and see you as soon as possible.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ================= BOOK CTA ================= -->
+<section class="book">
+  <div class="wrap">
+    <h2 class="section-title reveal">Book your visit in 10 seconds</h2>
+    <p class="reveal d1">Tap the button below — WhatsApp opens with a ready message. Just press send, and we'll confirm your appointment time.</p>
+    <a class="btn btn-mint reveal d2" href="https://wa.me/919896936360?text=Hello%20BS%20Dental%20Clinic%2C%20I%20would%20like%20to%20book%20an%20appointment.%20My%20name%20is%3A%20" target="_blank" rel="noopener" style="font-size:1.05rem;padding:16px 34px">Book on WhatsApp now</a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 BS Dental Clinic, Sirsa</span>
+    <span>Parshuram Chowk, Sirsa, Haryana · 098969 36360</span>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a class="wa-float" aria-label="Chat on WhatsApp" href="https://wa.me/919896936360?text=Hello%20BS%20Dental%20Clinic%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.3c1.9 1 4 1.6 4.8 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-4.3 1.4 1.4-4.1-.3-.4C6.2 18.6 5.7 16.8 5.7 15 5.7 9.3 10.3 4.7 16 4.7S26.3 9.3 26.3 15 21.7 24.8 16 24.8zm5.6-7.2c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.6-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.2 3.1 1.3 3.3c.2.2 2.3 3.5 5.5 4.9.8.3 1.4.5 1.9.7.8.2 1.5.2 2 .1.6-.1 1.8-.7 2.1-1.5.3-.7.3-1.3.2-1.5-.1-.1-.3-.2-.6-.4z"/></svg>
+</a>
+
+<script>
+/* ============================================
+   SMALL JAVASCRIPT — 3 simple jobs:
+
+   1. Scroll reveal: watches the page. When an
+      element with class "reveal" comes into view,
+      we add class "in" and CSS fades it up.
+   2. Counting numbers: 0 → 47 count-up when the
+      number becomes visible.
+   3. Header shadow: adds a soft shadow to the top
+      bar once you start scrolling.
+   ============================================ */
+
+// 1) SCROLL REVEAL
+// IntersectionObserver = a built-in browser helper that
+// tells us when something enters the screen.
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');   // triggers the CSS animation
+      revealObserver.unobserve(entry.target); // animate once, then stop watching
+    }
+  });
+}, { threshold: 0.15 }); // fire when 15% of the element is visible
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// 2) COUNTING NUMBERS (0 → target)
+function animateCount(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const duration = 1200; // milliseconds (1.2 seconds)
+  const start = performance.now();
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    // "easeOut" makes it start fast and slow down at the end
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target);
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCount(entry.target);
+      countObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+
+// 3) HEADER SHADOW ON SCROLL
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+</script>
+
+</body>
+</html>
